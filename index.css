@@ -2480,8 +2480,10 @@ a:hover { color: var(--accent-cyan); }
 
     .mobile-menu-btn { display: flex; }
 
-    .hero { padding: 130px 0 80px; }
-    .page-hero { padding: 130px 0 40px; }
+    .hero { padding: 100px 0 60px; }
+    .page-hero { padding: 100px 0 40px; }
+    .features, .transform-section, .how-it-works, .testimonials { padding: 60px 0; }
+    .section-header { margin-bottom: 40px; }
 
     .steps-grid { grid-template-columns: 1fr; }
     .step-line { display: none; }
@@ -2547,6 +2549,8 @@ a:hover { color: var(--accent-cyan); }
     .content-item { padding: 16px; }
     .hero-ctas { flex-direction: column; }
     .hero-cta { width: 100%; justify-content: center; }
-    .proof-logos { gap: 20px; }
+    .proof-logos { gap: 16px; flex-wrap: wrap; }
+    .proof-item { font-size: 0.85rem; }
+    .marquee-item { font-size: 0.9rem; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
 }
