@@ -24,20 +24,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // Mobile menu
     const mobileBtn = document.getElementById('mobileMenuBtn');
     const mainNav = document.getElementById('mainNav');
+    const navBackdrop = document.getElementById('navBackdrop');
+    
+    function closeMenu() {
+        mobileBtn.classList.remove('open');
+        mainNav.classList.remove('open');
+        if (navBackdrop) navBackdrop.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+
     if (mobileBtn && mainNav) {
         mobileBtn.addEventListener('click', () => {
-            mobileBtn.classList.toggle('open');
-            mainNav.classList.toggle('open');
-            document.body.style.overflow = mainNav.classList.contains('open') ? 'hidden' : '';
+            const isOpen = mainNav.classList.contains('open');
+            if (isOpen) {
+                closeMenu();
+            } else {
+                mobileBtn.classList.add('open');
+                mainNav.classList.add('open');
+                if (navBackdrop) navBackdrop.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            }
         });
+        
         // Close on link click
         mainNav.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', () => {
-                mobileBtn.classList.remove('open');
-                mainNav.classList.remove('open');
-                document.body.style.overflow = '';
-            });
+            link.addEventListener('click', closeMenu);
         });
+        
+        // Close on backdrop click
+        if (navBackdrop) {
+            navBackdrop.addEventListener('click', closeMenu);
+        }
     }
 
     // Platform Tabs
@@ -406,7 +423,7 @@ async function initBlogPage() {
                 
                 postArticle.innerHTML = `
                     <div class="blog-card-image">
-                        <img src="${encodeURI(post.image || '')}" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; transition: 0.4s;" class="blog-card-img-element">
+                        <img src="${encodeURI(post.image || '')}" alt="Cover" style="width: 100%; height: 100%; object-fit: cover; transition: 0.4s;" class="blog-card-img-element" loading="lazy">
                     </div>
                     <div class="blog-card-body">
                         <div class="blog-meta">

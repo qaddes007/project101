@@ -66,6 +66,9 @@ body {
     min-height: 100vh;
 }
 
+img { max-width: 100%; height: auto; display: block; }
+button, input, select, textarea, .hero-cta, .read-more-btn { min-height: 44px; }
+
 ::selection {
     background: rgba(167, 139, 250, 0.3);
     color: #fff;
@@ -2462,21 +2465,40 @@ a:hover { color: var(--accent-cyan); }
 }
 
 @media (max-width: 768px) {
-    .nav { 
-        display: none;
+    .nav-backdrop {
         position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background: rgba(10, 10, 15, 0.95);
-        backdrop-filter: blur(20px);
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 24px;
-        z-index: 105;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.6);
+        backdrop-filter: blur(4px);
+        opacity: 0;
+        pointer-events: none;
+        transition: var(--transition-smooth);
+        z-index: 104;
+    }
+    .nav-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
     }
 
-    .nav.open { display: flex; }
-    .nav.open .nav-link { font-size: 1.2rem; }
+    .nav { 
+        position: fixed;
+        top: 0; right: -100%; bottom: 0;
+        width: 280px;
+        background: rgba(16, 16, 26, 0.98);
+        border-left: 1px solid var(--border-subtle);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 80px 32px;
+        gap: 28px;
+        z-index: 105;
+        transition: right 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        display: flex;
+    }
+
+    .nav.open { right: 0; }
+    .nav-link { font-size: 1.15rem; width: 100%; padding: 12px 0; border-radius: 0; }
+    .nav-link::before { display: none; }
 
     .mobile-menu-btn { display: flex; }
 
