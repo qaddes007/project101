@@ -2534,9 +2534,10 @@ a:hover { color: var(--accent-cyan); }
     .newsletter-form input { width: 100%; }
 
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-
-    .hero-stats { gap: 24px; }
-    .stat-number { font-size: 1.5rem; }
+    .hero-stats { flex-direction: column; gap: 16px; margin-top: 40px; }
+    .stat-divider { width: 40px; height: 1px; }
+    .hero-ctas { flex-direction: column; width: 100%; }
+    .hero-cta { width: 100%; justify-content: center; }
 
     .card-header { flex-wrap: wrap; gap: 10px; }
     .content-item-header { flex-direction: column; align-items: flex-start; gap: 8px; }
@@ -2549,28 +2550,24 @@ a:hover { color: var(--accent-cyan); }
     .transform-demo { grid-template-columns: 1fr; gap: 0; max-width: 500px; }
     .transform-card { min-height: auto; }
     .transform-arrow {
-        flex-direction: row;
+        flex-direction: column;
         padding: 16px 0;
     }
     .transform-arrow .arrow-line {
-        width: 40px;
-        height: 2px;
-        background: linear-gradient(to right, transparent, var(--accent-purple));
+        width: 2px;
+        height: 40px;
+        background: linear-gradient(to bottom, transparent, var(--accent-purple));
     }
-    .transform-arrow .arrow-icon { transform: rotate(90deg); }
+    .transform-arrow .arrow-icon { transform: rotate(0deg); }
     @keyframes arrowBounce {
-        0%, 100% { transform: rotate(90deg) translateX(0); }
-        50% { transform: rotate(90deg) translateX(4px); }
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(4px); }
     }
 }
 
 @media (max-width: 480px) {
-    .hero-stats { flex-direction: column; gap: 16px; }
-    .stat-divider { width: 40px; height: 1px; }
     .card-content { padding: 20px 16px; }
     .content-item { padding: 16px; }
-    .hero-ctas { flex-direction: column; }
-    .hero-cta { width: 100%; justify-content: center; }
     .proof-logos { gap: 16px; flex-wrap: wrap; }
     .proof-item { font-size: 0.85rem; }
     .marquee-item { font-size: 0.9rem; }
