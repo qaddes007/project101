@@ -265,6 +265,7 @@ a:hover { color: var(--accent-cyan); }
     z-index: 1;
     padding: 160px 0 100px;
     text-align: center;
+    overflow: hidden;
 }
 
 .hero-glow {
@@ -276,6 +277,7 @@ a:hover { color: var(--accent-cyan); }
     height: 400px;
     background: radial-gradient(ellipse, rgba(167, 139, 250, 0.12) 0%, transparent 70%);
     pointer-events: none;
+    z-index: 0;
 }
 
 .hero-badge, .section-badge {
@@ -2583,4 +2585,62 @@ a:hover { color: var(--accent-cyan); }
     .proof-item { font-size: 0.85rem; }
     .marquee-item { font-size: 0.9rem; }
     .footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+}
+
+/* ========================================
+   Mobile Scroll Glitch Fixes
+   ======================================== */
+@media (max-width: 768px) {
+    /* Disable fixed background orbs on mobile — causes GPU repaint/scroll jank */
+    .bg-orbs {
+        position: absolute;
+    }
+
+    /* Prevent hero glow from bleeding into sections below */
+    .hero {
+        overflow: hidden;
+    }
+    .hero-glow {
+        display: none;
+    }
+
+    /* Ensure sections have correct stacking with no z-index collisions */
+    .hero, .social-proof, .features, .how-it-works,
+    .transform-section, .testimonials, .newsletter, .footer {
+        position: relative;
+        z-index: auto;
+        transform: none;
+    }
+
+    /* Ensure animate-in elements always become fully visible on mobile
+       (guards against IntersectionObserver not firing correctly) */
+    .animate-in {
+        opacity: 1 !important;
+        transform: none !important;
+        animation: none !important;
+    }
+
+    /* Fix stat-number gradient — -webkit-text-fill-color can break on some
+       mobile browsers causing the stat to appear invisible */
+    .stat-number {
+        background: none;
+        -webkit-background-clip: unset;
+        -webkit-text-fill-color: unset;
+        background-clip: unset;
+        color: var(--accent-purple);
+    }
+
+    /* Ensure stat section has visible breathing room and no overlap */
+    .hero-stats {
+        position: relative;
+        z-index: 2;
+        background: transparent;
+        padding: 0 16px;
+    }
+
+    /* Force natural scroll — no overflow cuts on page wrappers */
+    body, html {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+    }
 }
