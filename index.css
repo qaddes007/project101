@@ -2522,8 +2522,8 @@ a:hover { color: var(--accent-cyan); }
     .nav {
         position: fixed;
         top: 0; left: 0;
-        width: 100%; height: 100dvh;
-        background: rgba(10, 10, 15, 1);
+        width: 100vw; height: 100vh;
+        background: #0a0a0f;
         flex-direction: column;
         align-items: center;
         justify-content: center;
@@ -2622,11 +2622,20 @@ a:hover { color: var(--accent-cyan); }
         height: 1px;
     }
 
-    /* Fix gradient text rendering on Android WebView */
+    /* Fix stat layout: ensure number + suffix stay on ONE line */
     .stat {
         display: flex;
         flex-direction: column;
         align-items: center;
+        gap: 4px;
+    }
+
+    .stat-value {
+        display: flex !important;
+        flex-direction: row !important;
+        align-items: baseline;
+        gap: 2px;
+        line-height: 1;
     }
 
     /* Keep number and suffix (K+, /5) on same line */
