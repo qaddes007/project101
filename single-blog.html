@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post — BioBoost AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .article-page { max-width: 800px; margin: 100px auto 40px; padding: 0 24px; }
+        .article-back { display: inline-flex; align-items: center; gap: 8px; color: var(--text-secondary); text-decoration: none; margin-bottom: 24px; font-weight: 500; }
+        .article-back:hover { color: var(--accent-purple); }
+        .article-header { margin-bottom: 30px; text-align: center; }
+        .article-header h1 { font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3rem); margin: 16px 0; color: white; }
+        .article-meta { color: var(--text-muted); font-size: 0.95rem; }
+        .article-cover { width: 100%; max-height: 400px; object-fit: cover; border-radius: var(--radius-lg); margin-bottom: 40px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .article-content { color: var(--text-secondary); font-size: 1.1rem; line-height: 1.8; }
+        .article-content h2 { color: white; margin-top: 40px; margin-bottom: 16px; font-family: var(--font-display); }
+        .article-content p { margin-bottom: 24px; }
+        .article-content blockquote { border-left: 4px solid var(--accent-purple); padding-left: 20px; font-style: italic; color: #fff; background: rgba(167, 139, 250, 0.05); padding: 20px; border-radius: 0 var(--radius-md) var(--radius-md) 0; }
+    </style>
+</head>
+<body>
+    <header class="header" id="header" style="position:fixed;top:0;width:100%;z-index:1000;background:rgba(10,10,15,0.9);backdrop-filter:blur(10px);">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">BioBoost <span class="logo-ai">AI</span></span>
+            </a>
+            <nav class="nav">
+                <a href="blog.html" class="nav-link">← All Blogs</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="article-page" id="articleContainer">
+        <p style="text-align:center; color: var(--text-muted); margin-top: 100px;">Loading article...</p>
+    </div>
+    <script>
+        const fallbackBlogs = [
+            {
+                id: 'seed-1',
+                title: 'The Psychology of a High-Converting LinkedIn Hook',
+                category: 'Content Strategy',
+                read_time: 5,
+                image: 'linkedin_logo.png',
+                excerpt: 'Why the first sentence of your post matters more than the rest of it combined.',
+                content: `
+                    <p>Writing a great hook is 90% of the battle. Your LinkedIn profile isn't a resume. It's a landing page. And like any landing page, it has one job: convert visitors into action-takers.</p>
+                    <p>Here's the thing: recruiters spend an average of 7.4 seconds scanning your profile before deciding whether to reach out.</p>
+                    <h2>1. What Do You Actually Do?</h2>
+                    <p>Your headline is the most valuable real estate on LinkedIn. Stop wasting it with just your job title. Instead, use this formula:</p>
+                    <blockquote>[Role] | [Key skill] + [Who you help] | [Proof or differentiator]</blockquote>
+                    <h2>2. Why Should Someone Care?</h2>
+                    <p>Your About section should read like a conversation, not a cover letter. Lead with a hook, share your unique angle, and end with a clear CTA.</p>
+                `
+            },
+            {
+                id: 'seed-2',
+                title: 'Why Resumes Are Dying (And What to Build Instead)',
+                category: 'Career Growth',
+                read_time: 4,
+                image: 'career_growth.png',
+                excerpt: 'The modern job market cares less about your PDF and more about your digital footprint.',
+                content: `
+                    <p>Your digital footprint is your new resume. Recruiters and hiring managers are checking your LinkedIn the moment your name hits their radar.</p>
+                    <p>If your last update was 3 years ago and your headline says "Open to new opportunities," you are essentially invisible in a high-demand market.</p>
+                    <h2>Focus on "Proof of Work"</h2>
+                    <p>Stop listing responsibilities. Start listing achievements. Instead of "Responsible for managing a team," try "Lead a team of 12 that increased deployment frequency by 40%."</p>
+                `
+            },
+            {
+                id: 'seed-3',
+                title: 'Networking Without the Cringe: A Humans Guide',
+                category: 'Personal Branding',
+                read_time: 6,
+                image: 'https://images.unsplash.com/photo-1515187029135-18ee286d815b?auto=format&fit=crop&q=80&w=800',
+                excerpt: 'How to build meaningful professional relationships without feeling like a salesperson.',
+                content: `
+                    <p>Networking isn't about collecting business cards. It's about providing value before you ask for it.</p>
+                    <p>The most successful professionals I know never "network." They build community. They solve problems for people they admire. They curate interesting information and share it.</p>
+                    <blockquote>"Networking is just making friends with people who do cool stuff. Don't overthink it."</blockquote>
+                `
+            }
+        ];
+
+        // Utility to escape HTML
+        function escapeHTML(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        document.addEventListener('DOMContentLoaded', async () => {
+            const params = new URLSearchParams(window.location.search);
+            const id = params.get('id');
+            const container = document.getElementById('articleContainer');
+
+            if (!id) {
+                container.innerHTML = '<h1>Article not found</h1><p>No ID parameter provided.</p>';
+                return;
+            }
+
+            try {
+                let post = null;
+                try {
+                    const response = await fetch('/api/get_single_blog?id=' + encodeURIComponent(id));
+                    if (response.ok) {
+                        post = await response.json();
+                        if (post.error) post = null; 
+                    }
+                } catch (fetchErr) {
+                    console.warn('API Error, checking fallback:', fetchErr);
+                }
+
+                if (!post) {
+                    post = fallbackBlogs.find(b => b.id === id);
+                }
+
+                if (!post) {
+                    container.innerHTML = `<h1>Error Loading Article</h1><p>The requested blog post could not be found.</p><a href="blog.html" class="article-back">← Back to Blog</a>`;
+                    return;
+                }
+
+                // SECURITY: Build DOM safely
+                container.innerHTML = '';
+                
+                const header = document.createElement('div');
+                header.className = 'article-header';
+                
+                const badge = document.createElement('span');
+                badge.className = 'section-badge';
+                badge.textContent = post.category;
+                
+                const h1 = document.createElement('h1');
+                h1.textContent = post.title;
+                
+                const meta = document.createElement('div');
+                meta.className = 'article-meta';
+                meta.textContent = `BioBoost Team · ${post.read_time || post.readTime} min read`;
+                
+                header.appendChild(badge);
+                header.appendChild(h1);
+                header.appendChild(meta);
+                container.appendChild(header);
+
+                if (post.image) {
+                    const img = document.createElement('img');
+                    img.src = encodeURI(post.image);
+                    img.alt = 'Cover';
+                    img.className = 'article-cover';
+                    container.appendChild(img);
+                }
+
+                const contentDiv = document.createElement('div');
+                contentDiv.className = 'article-content';
+                // SECURITY: Content from Admin is allowed HTML, but we trust the secured admin panel
+                contentDiv.innerHTML = post.content || post.excerpt; 
+                container.appendChild(contentDiv);
+
+                document.title = post.title + " — BioBoost AI";
+            } catch (err) {
+                const h1 = document.createElement('h1');
+                h1.textContent = 'Error Loading Article';
+                const p = document.createElement('p');
+                p.textContent = err.message;
+                container.innerHTML = '';
+                container.appendChild(h1);
+                container.appendChild(p);
+            }
+        });
+    </script>
+</body>
+</html>

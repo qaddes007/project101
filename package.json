@@ -1,0 +1,16 @@
+{
+  "name": "bioboost-ai",
+  "version": "1.0.0",
+  "description": "AI-Powered Personal Branding Kit Generator",
+  "private": true,
+  "scripts": {
+    "generate-hash": "node -e \"const b = require('bcryptjs'); const args = process.argv; const pw = args[2] || 'bioboostadmin'; console.log('Hash for password \\\"' + pw + '\\\":\\n' + b.hashSync(pw, 10));\"",
+    "dev": "vercel dev"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.9.4",
+    "bcryptjs": "^2.4.3",
+    "jsonwebtoken": "^9.0.2",
+    "resend": "^3.4.0"
+  }
+}

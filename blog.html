@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog — BioBoost AI | Personal Branding Insights</title>
+    <meta name="description" content="Expert insights on personal branding, LinkedIn strategy, career growth, and building your professional presence online.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                        <path d="M16 8L22 11V21L16 24L10 21V11L16 8Z" fill="url(#logoGrad)"/>
+                        <defs><linearGradient id="logoGrad" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                    </svg>
+                </div>
+                <span class="logo-text">BioBoost <span class="logo-ai">AI</span></span>
+            </a>
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="generator.html" class="nav-link">Generator</a>
+                <a href="blog.html" class="nav-link active">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Page Hero -->
+    <section class="page-hero">
+        <div class="container">
+            <span class="section-badge">Blog</span>
+            <h1 class="hero-title" style="font-size: clamp(2rem, 4vw, 3rem);">
+                Insights for <span class="gradient-text">Career Growth</span>
+            </h1>
+            <p class="hero-subtitle">Expert strategies on personal branding, LinkedIn optimization, and standing out in your industry.</p>
+        </div>
+    </section>
+
+    <!-- Blog Categories -->
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-filters">
+                <button class="filter-btn active" onclick="filterPosts('all', this)">All Posts</button>
+                <button class="filter-btn" onclick="filterPosts('linkedin', this)">LinkedIn</button>
+                <button class="filter-btn" onclick="filterPosts('branding', this)">Personal Branding</button>
+                <button class="filter-btn" onclick="filterPosts('career', this)">Career Growth</button>
+                <button class="filter-btn" onclick="filterPosts('freelance', this)">Freelancing</button>
+            </div>
+
+            <!-- Dynamic Featured Post -->
+            <div id="dynamicFeaturedPost"></div>
+
+            <!-- Dynamic Blog Grid -->
+            <div class="blog-grid" id="dynamicBlogGrid"></div>
+
+            <!-- Newsletter CTA -->
+            <div class="blog-newsletter">
+                <div class="newsletter-inner">
+                    <div class="newsletter-content">
+                        <h3>Get Branding Insights Weekly</h3>
+                        <p>Join 5,000+ professionals who get actionable personal branding tips every Thursday. No spam, no fluff — just signal.</p>
+                    </div>
+                    <form class="newsletter-form" id="newsletterForm" onsubmit="handleNewsletter(event)">
+                        <input type="email" placeholder="you@example.com" required id="newsletterEmail">
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Article Modal -->
+    <div class="article-modal" id="articleModal">
+        <div class="article-modal-overlay" onclick="closeArticle()"></div>
+        <div class="article-modal-content">
+            <button class="article-close" onclick="closeArticle()">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+            </button>
+            <div class="article-body" id="articleBody"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon"><svg width="28" height="28" viewBox="0 0 32 32" fill="none"><path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="url(#logoGrad2)" stroke-width="2" fill="none"/><path d="M16 8L22 11V21L16 24L10 21V11L16 8Z" fill="url(#logoGrad2)"/><defs><linearGradient id="logoGrad2" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs></svg></div>
+                        <span class="logo-text">BioBoost <span class="logo-ai">AI</span></span>
+                    </div>
+                    <p class="footer-tagline">Your AI-powered personal branding engine.</p>
+                </div>
+                <div class="footer-links"><h4>Product</h4><a href="generator.html">Generator</a><a href="blog.html">Blog</a></div>
+                <div class="footer-links"><h4>Company</h4><a href="contact.html">Contact</a><a href="privacy.html">Privacy Policy</a></div>
+            </div>
+            <div class="footer-bottom"><p>&copy; 2026 BioBoost AI. All rights reserved.</p></div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

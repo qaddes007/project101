@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioBoost AI — AI-Powered Personal Branding Kit Generator</title>
+    <meta name="description" content="Generate a high-converting personal branding kit with AI. LinkedIn bios, Twitter bios, website copy, headlines, and ready-to-post content — in seconds.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <!-- Animated background -->
+    <div class="bg-orbs">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="orb orb-3"></div>
+    </div>
+
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">
+                    <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                        <path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="url(#logoGrad)" stroke-width="2" fill="none"/>
+                        <path d="M16 8L22 11V21L16 24L10 21V11L16 8Z" fill="url(#logoGrad)"/>
+                        <defs><linearGradient id="logoGrad" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                    </svg>
+                </div>
+                <span class="logo-text">BioBoost <span class="logo-ai">AI</span></span>
+            </a>
+            <nav class="nav" id="mainNav">
+                <a href="index.html" class="nav-link active">Home</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="generator.html" class="nav-link">Generator</a>
+                <a href="blog.html" class="nav-link">Blog</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+            </nav>
+            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-badge animate-in">✦ AI-Powered Personal Branding</div>
+            <h1 class="hero-title animate-in" style="--delay:0.1s">
+                Your Brand. <br>
+                <span class="gradient-text">Engineered to Stand Out.</span>
+            </h1>
+            <p class="hero-subtitle animate-in" style="--delay:0.2s">
+                Generate a complete personal branding kit — LinkedIn bios, headlines, 
+                ready-to-post content, and more. Built to get you hired, attract clients, 
+                and build authority.
+            </p>
+            <div class="hero-ctas animate-in" style="--delay:0.3s">
+                <a href="generator.html" class="hero-cta primary">
+                    <span>Build Your Brand Kit</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+                <a href="#features" class="hero-cta secondary">
+                    <span>See How It Works</span>
+                </a>
+            </div>
+            <div class="hero-stats animate-in" style="--delay:0.4s">
+                <div class="stat">
+                    <span class="stat-number" data-count="6">0</span>
+                    <span class="stat-label">Brand Assets</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number" data-count="20">0</span>
+                    <span class="stat-label">Content Pieces</span>
+                </div>
+                <div class="stat-divider"></div>
+                <div class="stat">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Possibilities</span>
+                </div>
+            </div>
+        </div>
+        <!-- Hero visual element -->
+        <div class="hero-glow"></div>
+    </section>
+
+    <!-- Trusted By / Social Proof -->
+    <section class="social-proof">
+        <div class="container">
+            <p class="social-proof-label">Trusted by professionals across industries</p>
+            <div class="proof-logos">
+                <div class="proof-item">🏢 Tech Startups</div>
+                <div class="proof-item">🏥 Healthcare</div>
+                <div class="proof-item">💰 Finance</div>
+                <div class="proof-item">🎨 Creative Agencies</div>
+                <div class="proof-item">📊 Consulting</div>
+                <div class="proof-item">🎓 Education</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Features</span>
+                <h2 class="section-title">Everything You Need to <span class="gradient-text">Own Your Narrative</span></h2>
+                <p class="section-subtitle">One tool. Six powerful brand assets. Zero generic fluff.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon" style="--accent: #a78bfa;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                    </div>
+                    <h3>LinkedIn Bios</h3>
+                    <p>3 distinct, keyword-optimized versions that position you as the obvious choice — not another profile in the crowd.</p>
+                    <span class="feature-tag">3 versions</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="--accent: #06b6d4;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </div>
+                    <h3>Twitter/X Bios</h3>
+                    <p>Punchy, memorable, personality-driven bios under 160 characters that make people hit "Follow" instantly.</p>
+                    <span class="feature-tag">3 versions</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="--accent: #f472b6;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+                    </div>
+                    <h3>Website About</h3>
+                    <p>A compelling story-driven section that tells visitors who you are, what you do, and why it matters — in seconds.</p>
+                    <span class="feature-tag">Ready to use</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="--accent: #34d399;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h10M4 17h12"/></svg>
+                    </div>
+                    <h3>LinkedIn Headlines</h3>
+                    <p>5 scroll-stopping headlines packed with keywords that improve your visibility and get recruiters clicking.</p>
+                    <span class="feature-tag">5 options</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="--accent: #fb923c;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+                    </div>
+                    <h3>LinkedIn Posts</h3>
+                    <p>3 ready-to-publish posts with attention-grabbing hooks, real value, clean formatting, and strong CTAs.</p>
+                    <span class="feature-tag">3 posts</span>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon" style="--accent: #facc15;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+                    </div>
+                    <h3>Growth Tips</h3>
+                    <p>5 insider strategies tailored to your goal — whether you're job hunting, freelancing, or building authority.</p>
+                    <span class="feature-tag">5 tips</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANIMATED SECTION 1: Brand Transformation (Before → After) -->
+    <section class="transform-section" id="transform">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">✦ See The Difference</span>
+                <h2 class="section-title">From Generic to <span class="gradient-text">Magnetic</span></h2>
+                <p class="section-subtitle">Watch your brand transform in real-time. Same person — completely different impression.</p>
+            </div>
+            <div class="transform-demo" id="transformDemo">
+                <div class="transform-card before">
+                    <div class="transform-label">
+                        <span class="label-dot before-dot"></span>
+                        Before
+                    </div>
+                    <div class="transform-profile">
+                        <div class="profile-avatar-placeholder">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+                        </div>
+                        <div>
+                            <div class="profile-name">Alex Thompson</div>
+                            <div class="profile-headline before-headline">Software Developer</div>
+                        </div>
+                    </div>
+                    <div class="transform-bio" id="beforeBio">
+                        <span class="typing-cursor before-cursor"></span>
+                    </div>
+                </div>
+
+                <div class="transform-arrow">
+                    <div class="arrow-line"></div>
+                    <div class="arrow-icon">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                    </div>
+                    <div class="arrow-pulse"></div>
+                </div>
+
+                <div class="transform-card after">
+                    <div class="transform-label">
+                        <span class="label-dot after-dot"></span>
+                        After BioBoost
+                    </div>
+                    <div class="transform-profile">
+                        <div class="profile-avatar-placeholder glow">
+                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M20 21a8 8 0 10-16 0"/></svg>
+                        </div>
+                        <div>
+                            <div class="profile-name">Alex Thompson</div>
+                            <div class="profile-headline after-headline" id="afterHeadline"><span class="typing-cursor after-cursor"></span></div>
+                        </div>
+                    </div>
+                    <div class="transform-bio" id="afterBio">
+                        <span class="typing-cursor after-cursor"></span>
+                    </div>
+                    <div class="transform-sparkles">
+                        <span class="sparkle-dot" style="--x:10%;--y:20%;--delay:0s;">✦</span>
+                        <span class="sparkle-dot" style="--x:85%;--y:15%;--delay:0.5s;">✦</span>
+                        <span class="sparkle-dot" style="--x:90%;--y:70%;--delay:1s;">✦</span>
+                        <span class="sparkle-dot" style="--x:5%;--y:80%;--delay:1.5s;">✦</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ANIMATED SECTION 2: Results Marquee -->
+    <section class="marquee-section">
+        <div class="marquee-wrapper">
+            <div class="marquee-track" id="marqueeTrack1">
+                <div class="marquee-content">
+                    <span class="marquee-item"><span class="marquee-icon">🚀</span> 3x more profile views</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">📩</span> 10x more recruiter messages</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">💼</span> Landed dream job in 2 weeks</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">💰</span> $15K first freelance client</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">📈</span> 500% engagement increase</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">🎯</span> Featured in industry newsletter</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">🤝</span> Built 2,000+ connections in 90 days</span>
+                    <span class="marquee-divider">✦</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span class="marquee-item"><span class="marquee-icon">🚀</span> 3x more profile views</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">📩</span> 10x more recruiter messages</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">💼</span> Landed dream job in 2 weeks</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">💰</span> $15K first freelance client</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">📈</span> 500% engagement increase</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">🎯</span> Featured in industry newsletter</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item"><span class="marquee-icon">🤝</span> Built 2,000+ connections in 90 days</span>
+                    <span class="marquee-divider">✦</span>
+                </div>
+            </div>
+        </div>
+        <div class="marquee-wrapper reverse">
+            <div class="marquee-track reverse" id="marqueeTrack2">
+                <div class="marquee-content">
+                    <span class="marquee-item highlight"><span class="marquee-icon">⚡</span> Instant brand kit generation</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">🌍</span> Used by professionals in 40+ countries</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">🏆</span> From invisible to industry voice</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">📝</span> 20+ content pieces per kit</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">💎</span> Premium positioning, zero cost</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">🔥</span> Stand out from 1,000+ applicants</span>
+                    <span class="marquee-divider">✦</span>
+                </div>
+                <div class="marquee-content" aria-hidden="true">
+                    <span class="marquee-item highlight"><span class="marquee-icon">⚡</span> Instant brand kit generation</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">🌍</span> Used by professionals in 40+ countries</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">🏆</span> From invisible to industry voice</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">📝</span> 20+ content pieces per kit</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">💎</span> Premium positioning, zero cost</span>
+                    <span class="marquee-divider">✦</span>
+                    <span class="marquee-item highlight"><span class="marquee-icon">🔥</span> Stand out from 1,000+ applicants</span>
+                    <span class="marquee-divider">✦</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Process</span>
+                <h2 class="section-title">Three Steps. <span class="gradient-text">Infinite Impact.</span></h2>
+                <p class="section-subtitle">From zero to a complete personal brand in under 60 seconds.</p>
+            </div>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <div class="step-line"></div>
+                    <h3>Enter Your Details</h3>
+                    <p>Tell us your role, skills, goals, target audience, and preferred tone. The more specific, the better your results.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <div class="step-line"></div>
+                    <h3>AI Crafts Your Kit</h3>
+                    <p>Our engine generates bios, headlines, posts, and tips tailored to your unique professional identity.</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3>Copy & Deploy</h3>
+                    <p>Grab your content with one click, update your profiles, and start attracting the right opportunities.</p>
+                </div>
+            </div>
+            <div class="steps-cta">
+                <a href="generator.html" class="hero-cta primary">
+                    <span>Try It Now — Free</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">Results</span>
+                <h2 class="section-title">Real People. <span class="gradient-text">Real Impact.</span></h2>
+                <p class="section-subtitle">See how BioBoost AI transformed their professional presence.</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"I updated my LinkedIn with the generated bio and headlines on Monday. By Friday, I had 3 recruiter messages and a phone screen scheduled. This is insane."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #a78bfa, #06b6d4);">SM</div>
+                        <div>
+                            <strong>Sarah Mitchell</strong>
+                            <span>UX Designer, Tech</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card featured">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"As a freelancer, positioning was my biggest struggle. BioBoost gave me copy that actually sounds like me — but sharper and more confident. Landed 2 clients in week one."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #f472b6, #fb923c);">JR</div>
+                        <div>
+                            <strong>James Rodriguez</strong>
+                            <span>Brand Strategist, Freelance</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-stars">★★★★★</div>
+                    <p class="testimonial-text">"The LinkedIn posts it generated got me more engagement in one week than I'd had in six months. The hooks are genuinely clever — not typical AI fluff."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar" style="background: linear-gradient(135deg, #34d399, #06b6d4);">AP</div>
+                        <div>
+                            <strong>Aisha Patel</strong>
+                            <span>Product Manager, SaaS</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Preview -->
+    <section class="faq-section" id="faq">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-badge">FAQ</span>
+                <h2 class="section-title">Got Questions?</h2>
+                <p class="section-subtitle">Here are the most common ones.</p>
+            </div>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span>Is BioBoost AI really free?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes — the core branding kit generator is completely free. No sign-up required, no hidden charges. Just fill in the form and get your results instantly.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span>Will the generated content sound robotic or generic?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Not at all. BioBoost AI is designed to produce copy that sounds human, specific, and compelling. Every output adapts to your tone, industry, and goals — no cookie-cutter templates.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span>Can I use the generated content on any platform?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Absolutely. Everything generated is yours to use — LinkedIn, Twitter/X, your website, portfolio, resume, email signatures, wherever you need it. No attribution required.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-trigger" onclick="toggleFaq(this)">
+                        <span>How is this different from ChatGPT or other AI writers?</span>
+                        <svg class="faq-chevron" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+                    </button>
+                    <div class="faq-answer">
+                        <p>BioBoost AI is purpose-built for personal branding. Instead of giving you one generic paragraph, it generates an entire branding kit — multiple versions, multiple platforms, ready-to-post content, and actionable growth tips — all tailored to your specific career goal.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-card">
+                <div class="cta-glow"></div>
+                <h2>Ready to Stand Out?</h2>
+                <p>Your next opportunity is one brand refresh away. Generate your complete personal branding kit in under 60 seconds.</p>
+                <a href="generator.html" class="hero-cta primary">
+                    <span>Generate My Brand Kit — Free</span>
+                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M4 10H16M16 10L11 5M16 10L11 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo">
+                        <div class="logo-icon">
+                            <svg width="28" height="28" viewBox="0 0 32 32" fill="none">
+                                <path d="M16 2L28 8V24L16 30L4 24V8L16 2Z" stroke="url(#logoGrad2)" stroke-width="2" fill="none"/>
+                                <path d="M16 8L22 11V21L16 24L10 21V11L16 8Z" fill="url(#logoGrad2)"/>
+                                <defs><linearGradient id="logoGrad2" x1="4" y1="2" x2="28" y2="30"><stop stop-color="#a78bfa"/><stop offset="1" stop-color="#06b6d4"/></linearGradient></defs>
+                            </svg>
+                        </div>
+                        <span class="logo-text">BioBoost <span class="logo-ai">AI</span></span>
+                    </div>
+                    <p class="footer-tagline">Your AI-powered personal branding engine. Built to help you get hired, attract clients, and build authority.</p>
+                </div>
+                <div class="footer-links">
+                    <h4>Product</h4>
+                    <a href="generator.html">Brand Kit Generator</a>
+                    <a href="blog.html">Blog</a>
+                    <a href="#features">Features</a>
+                </div>
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="#faq">FAQ</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 BioBoost AI. All rights reserved.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+                    <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

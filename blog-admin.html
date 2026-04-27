@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Database Admin</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+    <style>
+        .admin-layout { display: grid; grid-template-columns: 300px 1fr; gap: 30px; margin-top: 40px; }
+        .post-list { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 20px; max-height: 70vh; overflow-y: auto; }
+        .post-list-item { padding: 12px; border-bottom: 1px solid var(--border-subtle); cursor: pointer; transition: 0.2s; border-radius: var(--radius-sm); }
+        .post-list-item:hover { background: rgba(167, 139, 250, 0.1); }
+        .post-list-item.selected { background: var(--gradient-card); border-left: 3px solid var(--accent-purple); }
+        .post-list-item h4 { font-size: 0.95rem; margin-bottom: 4px; }
+        .post-list-item span { font-size: 0.8rem; color: var(--text-muted); }
+        .admin-form { background: var(--bg-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 30px; }
+        .admin-form textarea { min-height: 250px; }
+        .form-actions { display: flex; gap: 15px; margin-top: 20px; }
+        .btn-danger { background: rgba(239, 68, 68, 0.1); color: #ef4444; border: 1px solid rgba(239, 68, 68, 0.3); padding: 12px 24px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .btn-danger:hover { background: #ef4444; color: white; }
+        .btn-secondary { background: var(--bg-secondary); color: var(--text-primary); border: 1px solid var(--border-subtle); padding: 12px 24px; border-radius: var(--radius-md); cursor: pointer; font-weight: 600; transition: 0.2s; }
+        .btn-secondary:hover { background: var(--bg-card-hover); border-color: var(--accent-purple); }
+        .btn-primary { background: var(--gradient-main); color: #0a0a0f; border: none; padding: 12px 24px; border-radius: var(--radius-md); cursor: pointer; font-weight: 700; transition: 0.2s; }
+        .btn-primary:hover { filter: brightness(1.1); transform: translateY(-2px); }
+        
+        #loginOverlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: var(--bg-main); z-index: 9999; display: flex; align-items: center; justify-content: center; }
+        .login-box { background: var(--bg-card); padding: 40px; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle); width: 100%; max-width: 400px; text-align: center; }
+        .login-box input { width: 100%; padding: 12px; margin-bottom: 20px; border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); background: var(--bg-dark); color: white; }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header" style="position: relative;">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <span class="logo-text">BioBoost <span class="logo-ai">Admin</span></span>
+            </a>
+            <nav class="nav" id="mainNav">
+                <button id="logoutBtn" style="background:transparent; border:none; color:var(--text-secondary); cursor:pointer; font-size:16px;">Logout</button>
+                <a href="blog.html" class="nav-link">← Back to Live Blog</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container" style="padding: 40px 24px;">
+        <h1 style="font-family: var(--font-display); font-size: 2rem; margin-bottom: 10px;">Blog Database Manager</h1>
+        <p style="color: var(--text-secondary);">Manage your blog posts dynamically using the PHP API backend.</p>
+
+        <div class="admin-layout">
+            <!-- Sidebar: List of posts -->
+            <div class="post-list" id="adminPostList">
+                <p>Loading blogs...</p>
+            </div>
+
+            <!-- Form: Editor -->
+            <div class="admin-form">
+                <h3 style="margin-bottom: 24px;" id="formTitle">Create New Post</h3>
+                <form id="blogAdminForm">
+                    <input type="hidden" id="postId">
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>Title</label>
+                        <input type="text" id="postTitle" required>
+                    </div>
+                    <div class="form-grid" style="grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px;">
+                        <div class="form-group">
+                            <label>Category</label>
+                            <input type="text" id="postCategory" placeholder="e.g. Content Strategy" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Read Time (min)</label>
+                            <input type="number" id="postReadTime" placeholder="e.g. 5" required>
+                        </div>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>Image URL</label>
+                        <input type="text" id="postImage" placeholder="https://images.unsplash.com/..." required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>Excerpt / Summary</label>
+                        <input type="text" id="postExcerpt" required>
+                    </div>
+                    <div class="form-group" style="margin-bottom: 16px;">
+                        <label>Content (Full Article)</label>
+                        <textarea id="postContent" placeholder="Write your blog post here... You can use standard text." required></textarea>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="submit" class="btn-primary" id="saveBtn">Save Post</button>
+                        <button type="button" class="btn-secondary" id="newBtn">Start New</button>
+                        <button type="button" class="btn-danger" id="deleteBtn" style="display: none; margin-left: auto;">Delete</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Logic — JWT Auth (Vercel compatible) -->
+    <script>
+        let db = []; // Local cache of fetched blogs
+
+        // ── Auth: Read JWT from localStorage ──────────────────────────────────
+        const token = localStorage.getItem('bioboost_admin_token');
+
+        // Redirect to login if no token found
+        if (!token) {
+            window.location.href = 'login.html';
+        }
+
+        // Auth headers used on every protected API call
+        function authHeaders() {
+            return {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + token
+            };
+        }
+
+        // ── Logout ────────────────────────────────────────────────────────────
+        document.getElementById('logoutBtn').addEventListener('click', async () => {
+            try { await fetch('/api/logout', { method: 'POST', headers: authHeaders() }); } catch(e) {}
+            localStorage.removeItem('bioboost_admin_token');
+            window.location.href = 'login.html';
+        });
+
+        // ── Load All Blogs ────────────────────────────────────────────────────
+        async function loadBlogsFromAPI() {
+            const listEl = document.getElementById('adminPostList');
+            try {
+                const res = await fetch('/api/get_blogs');
+
+                if (res.status === 401) {
+                    localStorage.removeItem('bioboost_admin_token');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                db = await res.json();
+                listEl.innerHTML = '';
+
+                if (!db.length) {
+                    const p = document.createElement('p');
+                    p.textContent = 'No blogs found. Create one!';
+                    listEl.appendChild(p);
+                    return;
+                }
+
+                db.forEach(post => {
+                    const div = document.createElement('div');
+                    div.className = 'post-list-item';
+                    const h4 = document.createElement('h4');
+                    h4.textContent = post.title;
+                    const span = document.createElement('span');
+                    span.textContent = post.category;
+                    div.appendChild(h4);
+                    div.appendChild(span);
+                    div.onclick = () => loadPost(post.id);
+                    listEl.appendChild(div);
+                });
+            } catch (e) {
+                console.error('API error', e);
+                listEl.innerHTML = '<p style="color:#ef4444;">Failed to load posts. Check your connection.</p>';
+            }
+        }
+
+        const form      = document.getElementById('blogAdminForm');
+        const deleteBtn = document.getElementById('deleteBtn');
+        const newBtn    = document.getElementById('newBtn');
+        const formTitle = document.getElementById('formTitle');
+
+        // ── Load Post into Form ───────────────────────────────────────────────
+        function loadPost(id) {
+            const post = db.find(p => p.id === id);
+            if (!post) return;
+            document.getElementById('postId').value       = post.id;
+            document.getElementById('postTitle').value    = post.title;
+            document.getElementById('postCategory').value = post.category;
+            document.getElementById('postReadTime').value = post.readTime || post.read_time || 5;
+            document.getElementById('postImage').value    = post.image || '';
+            document.getElementById('postExcerpt').value  = post.excerpt;
+            document.getElementById('postContent').value  = post.content || post.excerpt || '';
+            formTitle.textContent = 'Edit Post';
+            deleteBtn.style.display = 'block';
+        }
+
+        function clearForm() {
+            form.reset();
+            document.getElementById('postId').value = '';
+            formTitle.textContent = 'Create New Post';
+            deleteBtn.style.display = 'none';
+            document.querySelectorAll('.post-list-item').forEach(el => el.classList.remove('selected'));
+        }
+
+        // ── Save Post (Create / Update) ───────────────────────────────────────
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('saveBtn');
+            btn.textContent = 'Saving...';
+            btn.disabled = true;
+
+            const post = {
+                id:       document.getElementById('postId').value,
+                title:    document.getElementById('postTitle').value,
+                category: document.getElementById('postCategory').value,
+                readTime: document.getElementById('postReadTime').value,
+                image:    document.getElementById('postImage').value,
+                excerpt:  document.getElementById('postExcerpt').value,
+                content:  document.getElementById('postContent').value
+            };
+
+            try {
+                const res = await fetch('/api/admin_blogs', {
+                    method: 'POST',
+                    headers: authHeaders(),
+                    body: JSON.stringify(post)
+                });
+
+                if (res.status === 401) {
+                    localStorage.removeItem('bioboost_admin_token');
+                    window.location.href = 'login.html';
+                    return;
+                }
+
+                if (res.ok) {
+                    const data = await res.json();
+                    await loadBlogsFromAPI();
+                    loadPost(data.id);
+                    btn.textContent = '✓ Saved!';
+                } else {
+                    const err = await res.json();
+                    alert('Save failed: ' + (err.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Network error. Please check your connection.');
+            }
+
+            setTimeout(() => { btn.textContent = 'Save Post'; btn.disabled = false; }, 2000);
+        });
+
+        newBtn.addEventListener('click', clearForm);
+
+        // ── Delete Post ───────────────────────────────────────────────────────
+        deleteBtn.addEventListener('click', async () => {
+            if (!confirm('Are you sure you want to delete this post? This cannot be undone.')) return;
+
+            const id = document.getElementById('postId').value;
+            try {
+                const res = await fetch('/api/admin_blogs', {
+                    method: 'DELETE',
+                    headers: authHeaders(),
+                    body: JSON.stringify({ id })
+                });
+
+                if (res.ok) {
+                    await loadBlogsFromAPI();
+                    clearForm();
+                } else {
+                    const err = await res.json();
+                    alert('Delete failed: ' + (err.error || 'Unknown error'));
+                }
+            } catch (err) {
+                alert('Network error. Please check your connection.');
+            }
+        });
+
+        // ── Init ──────────────────────────────────────────────────────────────
+        loadBlogsFromAPI();
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "functions": {
+    "api/**/*.js": {
+      "runtime": "@vercel/node"
+    }
+  },
+  "rewrites": [
+    { "source": "/api/get_blogs", "destination": "/api/get_blogs.js" },
+    { "source": "/api/get_single_blog", "destination": "/api/get_single_blog.js" },
+    { "source": "/api/login", "destination": "/api/login.js" },
+    { "source": "/api/logout", "destination": "/api/logout.js" },
+    { "source": "/api/get_csrf_token", "destination": "/api/get_csrf_token.js" },
+    { "source": "/api/admin_blogs", "destination": "/api/admin_blogs.js" },
+    { "source": "/api/contact", "destination": "/api/contact.js" }
+  ]
+}
