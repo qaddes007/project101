@@ -1,10 +1,5 @@
 {
   "version": 2,
-  "functions": {
-    "api/**/*.js": {
-      "runtime": "@vercel/node"
-    }
-  },
   "rewrites": [
     { "source": "/api/get_blogs", "destination": "/api/get_blogs.js" },
     { "source": "/api/get_single_blog", "destination": "/api/get_single_blog.js" },
